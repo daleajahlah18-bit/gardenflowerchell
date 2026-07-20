@@ -391,7 +391,19 @@
       z-index: 2;
       text-align: left;
       max-height: 74%;
-      overflow: hidden;
+      overflow-y: auto;
+      pointer-events: auto;
+    }
+
+    .letter-paper::-webkit-scrollbar {
+      width: 6px;
+    }
+    .letter-paper::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .letter-paper::-webkit-scrollbar-thumb {
+      background: rgba(122, 90, 104, 0.2);
+      border-radius: 4px;
     }
 
     /* ================= STAR / NIGHT SECTION ================= */
@@ -852,7 +864,7 @@
     <section id="catsec">
       <div class="eyebrow">a new friend</div>
       <h2 class="garden-title">She followed you here</h2>
-      <p class="garden-sub" id="catCaption">Scroll gently — she's still waking up.</p>
+      <p class="garden-sub" id="catCaption">Scroll gently she's still waking up.</p>
       <div class="cat-stage">
         <div class="cat-big" id="bigCat">🐱</div>
       </div>
@@ -864,7 +876,7 @@
       <div class="butterfly-copy">
         <div class="eyebrow">a hundred wishes</div>
         <h2 class="garden-title">Every butterfly is a little wish for you</h2>
-        <p class="garden-sub">Watch closely — they're not afraid of you.</p>
+        <p class="garden-sub">Watch closely they're not afraid of you.</p>
       </div>
     </section>
 
@@ -1136,7 +1148,7 @@
     const bigCat = document.getElementById('bigCat');
     const catCaption = document.getElementById('catCaption');
     const catActions = [
-      { pct: 0.0, emoji: '🐱', text: "Scroll gently — she's still waking up." },
+      { pct: 0.0, emoji: '🐱', text: "Scroll gently she's still waking up." },
       { pct: 0.25, emoji: '🙀', text: 'She stretches in the morning light.' },
       { pct: 0.5, emoji: '😻', text: 'She spots a butterfly and gives chase!' },
       { pct: 0.75, emoji: '😽', text: 'Tuckered out, she rolls in the grass.' },
@@ -1225,11 +1237,24 @@
       start: 'top 50%',
       onEnter() {
         gsap.to('#envFlap', { rotationX: 180, duration: 1.1, ease: 'power2.inOut' });
-        gsap.to('#letterPaper', { y: -40, opacity: 1, duration: 1, delay: .5, ease: 'power3.out' });
+        
+        const tl = gsap.timeline({ delay: 0.5 });
+        tl.to('#letterPaper', { y: -160, opacity: 1, duration: 0.8, ease: 'power2.out' }) // Tarik surat ke atas
+          .set('#letterPaper', { zIndex: 10 }) // Pindahkan surat ke depan amplop
+          .to('#letterPaper', { 
+            y: -20, 
+            maxHeight: '800px', // Biarkan surat memanjang ke bawah
+            duration: 0.8, 
+            ease: 'back.out(1.2)' 
+          });
       },
       onLeaveBack() {
-        gsap.to('#envFlap', { rotationX: 0, duration: .8, ease: 'power2.inOut' });
-        gsap.to('#letterPaper', { y: 30, opacity: 0, duration: .5 });
+        gsap.to('#envFlap', { rotationX: 0, duration: 0.8, ease: 'power2.inOut', delay: 0.6 });
+        
+        const tl = gsap.timeline();
+        tl.to('#letterPaper', { y: -160, maxHeight: '74%', duration: 0.6, ease: 'power2.in' }) // Tarik ke atas & kecilkan
+          .set('#letterPaper', { zIndex: 2 }) // Masukkan kembali ke dalam amplop
+          .to('#letterPaper', { y: 30, opacity: 0, duration: 0.6, ease: 'power2.in' }); // Turunkan dan sembunyikan
       }
     });
 
