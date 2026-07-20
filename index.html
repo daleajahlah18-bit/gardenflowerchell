@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Little World, Just For You icaaa 🌸</title>
+  <title>A Little World, Just For You Bella 🌸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link
     href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@300;400;600;700&family=Caveat:wght@500;600;700&display=swap"
@@ -398,9 +398,11 @@
     .letter-paper::-webkit-scrollbar {
       width: 6px;
     }
+
     .letter-paper::-webkit-scrollbar-track {
       background: transparent;
     }
+
     .letter-paper::-webkit-scrollbar-thumb {
       background: rgba(122, 90, 104, 0.2);
       border-radius: 4px;
@@ -856,7 +858,7 @@
     <section id="garden">
       <div class="eyebrow">the garden</div>
       <h2 class="garden-title">A flower for every little thing</h2>
-      <p class="garden-sub">Wander through &mdash; each one is blooming just for you.</p>
+      <p class="garden-sub">Wander through each one is blooming just for you.</p>
       <div class="flower-row" id="flowerRow"></div>
     </section>
 
@@ -888,12 +890,11 @@
         <div class="envelope">
           <div class="env-back"></div>
           <div class="letter-paper" id="letterPaper">
-            Dear Icaaa,<br><br>
+            Dear Bella,<br><br>
             If you're reading this, I hope today has been kind to you.
             You don't have to be anything other than exactly who you are.
-            You are enough, exactly as you are, right now, dan kalau
-            reinkarnasi benar ada nya, aku bakal tetap milih kamu.<br><br>
-            &mdash; with love ca, always 🌸
+            You are enough, exactly as you are, right now.<br><br>
+            &mdash; always 🌸
           </div>
           <div class="env-flap" id="envFlap"></div>
           <div class="env-seal">🌸</div>
@@ -964,7 +965,7 @@
     <!-- ENDING -->
     <section id="ending">
       <div class="ending-flower" id="endingFlower">🌸</div>
-      <h2 class="ending-title">This flower is for you icaaa.</h2>
+      <h2 class="ending-title">This flower is for you Bell.</h2>
       <p class="ending-sub">Thank you for existing.</p>
       <p class="ending-sub2">Have a wonderful day. 🫶🏻</p>
       <p class="fine-print">made with quiet care, one scroll at a time</p>
@@ -1237,20 +1238,20 @@
       start: 'top 50%',
       onEnter() {
         gsap.to('#envFlap', { rotationX: 180, duration: 1.1, ease: 'power2.inOut' });
-        
+
         const tl = gsap.timeline({ delay: 0.5 });
         tl.to('#letterPaper', { y: -160, opacity: 1, duration: 0.8, ease: 'power2.out' }) // Tarik surat ke atas
           .set('#letterPaper', { zIndex: 10 }) // Pindahkan surat ke depan amplop
-          .to('#letterPaper', { 
-            y: -20, 
+          .to('#letterPaper', {
+            y: -20,
             maxHeight: '800px', // Biarkan surat memanjang ke bawah
-            duration: 0.8, 
-            ease: 'back.out(1.2)' 
+            duration: 0.8,
+            ease: 'back.out(1.2)'
           });
       },
       onLeaveBack() {
         gsap.to('#envFlap', { rotationX: 0, duration: 0.8, ease: 'power2.inOut', delay: 0.6 });
-        
+
         const tl = gsap.timeline();
         tl.to('#letterPaper', { y: -160, maxHeight: '74%', duration: 0.6, ease: 'power2.in' }) // Tarik ke atas & kecilkan
           .set('#letterPaper', { zIndex: 2 }) // Masukkan kembali ke dalam amplop
