@@ -1600,6 +1600,18 @@
       // Play music
       music.play().catch(error => console.log("Autoplay dicegah oleh browser"));
 
+      // Setup Media Session API (Untuk memunculkan gambar dan judul di Lock Screen HP)
+      if ('mediaSession' in navigator) {
+        navigator.mediaSession.metadata = new MediaMetadata({
+          title: 'A Little World 🌸',
+          artist: 'For Chelsea',
+          album: 'Garden Surprise',
+          artwork: [
+            { src: 'image.jpeg', sizes: '512x512', type: 'image/jpeg' }
+          ]
+        });
+      }
+
       // Unlock scroll
       document.body.classList.remove('locked');
 
